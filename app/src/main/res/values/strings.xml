@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Prestamo</string>
+    <string-array name="ListaObjetos">
+        <item>Libro</item>
+        <item>Dinero</item>
+        <item>Ropa</item>
+        <item>Otro</item>
+    </string-array>
+</resources>
