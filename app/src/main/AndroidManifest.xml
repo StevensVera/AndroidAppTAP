@@ -15,7 +15,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Prestamo"></activity>
+        <activity android:name=".Prestamo" />
+        <activity android:name=".Lista" />
     </application>
 
 </manifest>

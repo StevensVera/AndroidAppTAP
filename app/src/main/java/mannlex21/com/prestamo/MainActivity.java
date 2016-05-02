@@ -1,13 +1,17 @@
 package mannlex21.com.prestamo;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import java.util.Calendar;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements OnClickListener {
 
@@ -15,6 +19,7 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         //----------------------------------------------
         /*Oculta la barra de notificaciones
         View decorView = getWindow().getDecorView();
@@ -23,6 +28,8 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
         //----------------------------------------------
         Button boton1 = (Button) findViewById(R.id.btnPrestar);
         boton1.setOnClickListener(this);
+        Button boton2 = (Button) findViewById(R.id.btnConsultar);
+        boton2.setOnClickListener(this);
 
     }
     public String getDatePhone(){
@@ -38,6 +45,10 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
         if (v.getId() == R.id.btnPrestar) {
             Intent PrestarL = new Intent(getApplicationContext(), Prestamo.class);
             startActivity(PrestarL);
+        }
+        if (v.getId() == R.id.btnConsultar) {
+            Intent Consultar = new Intent(getApplicationContext(), Lista.class);
+            startActivity(Consultar);
         }
     }
 }
