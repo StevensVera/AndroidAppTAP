@@ -34,6 +34,7 @@ public class Prestamo extends AppCompatActivity implements View.OnClickListener 
         Objetos = (Spinner) findViewById(R.id.Lista_Objetos);
         ArrayAdapter adapter = ArrayAdapter.createFromResource(this, R.array.ListaObjetos, android.R.layout.simple_spinner_item);
         Objetos.setAdapter(adapter);
+
         //Le agrega al campo Fecha Actual, la fecha del sistema
         TextView t ;
         t=(TextView)findViewById(R.id.txtFechaActual);
@@ -89,13 +90,13 @@ public class Prestamo extends AppCompatActivity implements View.OnClickListener 
         fecha_a = txtFechaActual.getText().toString();
         tipo = Lista.getSelectedItem().toString();
         objeto = txtObjeto.getText().toString();
+        Integer cb=0;
         if(nombre==null||detalle.equals(null)||cantidad==null||fecha_a.equals(null)||fecha_fin.equals(null) || objeto.equals(null)){
             Toast.makeText(this,"Faltan llenar campos...",Toast.LENGTH_LONG).show();
         }else{
             AppSQLiteOpenHelper AppSQL = new AppSQLiteOpenHelper(this,"Prestamo",null,1);
             SQLiteDatabase db = AppSQL.getWritableDatabase();
             try{
-                //db.execSQL("INSERT INTO Prestamo (Fecha_F,Fecha_A,NombreP,Objeto,Cantidad,Detalle,Tipo) VALUES ("+fecha_fin+","+fecha_a+","+nombre+","+objeto+","+cantidad+","+detalle+","+tipo+")");
                 ContentValues valores = new ContentValues();
                 valores.put("NombreP",nombre);
                 valores.put("Tipo",tipo);
@@ -104,6 +105,7 @@ public class Prestamo extends AppCompatActivity implements View.OnClickListener 
                 valores.put("Cantidad",cantidad);
                 valores.put("Fecha_A",fecha_a);
                 valores.put("Fecha_F",fecha_fin);
+                valores.put("CB",cb);
                 db.insert("Prestamo",null,valores);
                 Toast.makeText(this,"Se guardo correctamente",Toast.LENGTH_LONG).show();
             }catch (SQLException e){

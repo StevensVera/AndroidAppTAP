@@ -16,7 +16,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".Prestamo" />
-        <activity android:name=".Lista" />
+        <activity android:name=".ListaC" />
+        <activity android:name=".EditView"></activity>
     </application>
 
 </manifest>
