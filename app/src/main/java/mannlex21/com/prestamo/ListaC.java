@@ -59,6 +59,7 @@ public class ListaC extends AppCompatActivity {
                 TextView Id_ = (TextView) v.findViewById(R.id.ID1);
                 Integer Id = Integer.parseInt(Id_.getText().toString());
                 AbrirEdit(Id);
+                finish();
             }
         });
 

@@ -8,8 +8,10 @@ import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -52,6 +54,27 @@ public class Prestamo extends AppCompatActivity implements View.OnClickListener 
         txtObjeto = (TextView) findViewById(R.id.txtObjeto);
         txtFechaActual = (TextView) findViewById(R.id.txtFechaActual);
         Lista = (Spinner) findViewById(R.id.Lista_Objetos);
+
+        Lista.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                if(position==3){
+                    txtObjeto.setEnabled(true);
+                    TextView Obj = (TextView) findViewById(R.id.textView10);
+                    Obj.setEnabled(true);
+                }else{
+                    txtObjeto.setEnabled(false);
+                    TextView Obj = (TextView) findViewById(R.id.textView10);
+                    Obj.setEnabled(false);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+                // your code here
+            }
+
+        });
     }
     //Obtiene la fecha actual del sistema
     private String getDatePhone() {
@@ -67,14 +90,15 @@ public class Prestamo extends AppCompatActivity implements View.OnClickListener 
         switch (id){
             case R.id.btnAceptar:
                 guardarDatos();
-                //Toast.makeText(this,"Se presiono aceptar",Toast.LENGTH_SHORT).show();
+
                 break;
             case R.id.btnLimpiar:
                 limpiar();
-                //Toast.makeText(this,"Se presiono limpiar",Toast.LENGTH_LONG).show();
                 break;
             case R.id.btnCancelar:
-                Toast.makeText(this,"Se presiono cancelar",Toast.LENGTH_LONG).show();
+                Intent appInfo1 = new Intent(Prestamo.this, MainActivity.class);
+                startActivity(appInfo1);
+                finish();
                 break;
         }
     }
@@ -89,11 +113,15 @@ public class Prestamo extends AppCompatActivity implements View.OnClickListener 
         fecha_fin = txtFechaFin.getText().toString();
         fecha_a = txtFechaActual.getText().toString();
         tipo = Lista.getSelectedItem().toString();
-        objeto = txtObjeto.getText().toString();
         Integer cb=0;
-        if(nombre==null||detalle.equals(null)||cantidad==null||fecha_a.equals(null)||fecha_fin.equals(null) || objeto.equals(null)){
-            Toast.makeText(this,"Faltan llenar campos...",Toast.LENGTH_LONG).show();
+        if(nombre==null||detalle.equals(null)||cantidad==null||fecha_a.equals(null)||fecha_fin.equals(null)){
+            Toast.makeText(this,"Faltan llenar campos...",Toast.LENGTH_SHORT).show();
         }else{
+
+            objeto = txtObjeto.getText().toString();
+            if(objeto.equals("")){
+                objeto =tipo;
+            }
             AppSQLiteOpenHelper AppSQL = new AppSQLiteOpenHelper(this,"Prestamo",null,1);
             SQLiteDatabase db = AppSQL.getWritableDatabase();
             try{
@@ -107,9 +135,12 @@ public class Prestamo extends AppCompatActivity implements View.OnClickListener 
                 valores.put("Fecha_F",fecha_fin);
                 valores.put("CB",cb);
                 db.insert("Prestamo",null,valores);
-                Toast.makeText(this,"Se guardo correctamente",Toast.LENGTH_LONG).show();
+                Toast.makeText(this,"Se guardo correctamente",Toast.LENGTH_SHORT).show();
+                Intent appInfo = new Intent(Prestamo.this, MainActivity.class);
+                startActivity(appInfo);
+                finish();
             }catch (SQLException e){
-                Toast.makeText(this,"No se pudo guardar",Toast.LENGTH_LONG).show();
+                Toast.makeText(this,"No se pudo guardar",Toast.LENGTH_SHORT).show();
                 db.close();
             }
 
@@ -121,6 +152,7 @@ public class Prestamo extends AppCompatActivity implements View.OnClickListener 
         txtCantidad.setText("");
         txtFechaFin.setText("");
         txtObjeto.setText("");
+        Lista.setSelection(0);
         TextView t ;
         t=(TextView)findViewById(R.id.txtFechaActual);
         t.setText(getDatePhone());
