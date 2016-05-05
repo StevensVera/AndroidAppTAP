@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.AdapterView;
@@ -76,6 +77,19 @@ public class ListaC extends AppCompatActivity {
         startActivity(appInfo);
 
 
+    }
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        // TODO Auto-generated method stub
+
+        switch(keyCode){
+            case KeyEvent.KEYCODE_BACK:
+                Intent appInfo1 = new Intent(ListaC.this, MainActivity.class);
+                startActivity(appInfo1);
+                finish();
+                return true;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 
 

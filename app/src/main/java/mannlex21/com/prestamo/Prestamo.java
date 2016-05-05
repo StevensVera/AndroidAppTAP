@@ -9,6 +9,7 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.AdapterView;
@@ -43,11 +44,12 @@ public class Prestamo extends AppCompatActivity implements View.OnClickListener 
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_prestamo);
+
         final Calendar cal = Calendar.getInstance();
         año1=año=cal.get(Calendar.YEAR);
         mes1=mes=cal.get(Calendar.MONTH);
         dia1=dia=cal.get(Calendar.DAY_OF_MONTH);
-        Toast.makeText(Prestamo.this,año1+""+mes1+""+dia1,Toast.LENGTH_SHORT).show();
+
         Objetos = (Spinner) findViewById(R.id.Lista_Objetos);
         ArrayAdapter adapter = ArrayAdapter.createFromResource(this, R.array.ListaObjetos, android.R.layout.simple_spinner_item);
         Objetos.setAdapter(adapter);
@@ -66,6 +68,7 @@ public class Prestamo extends AppCompatActivity implements View.OnClickListener 
         boton4.setOnClickListener(this);
         Button boton5 = (Button) findViewById(R.id.btnFecha2);
         boton5.setOnClickListener(this);
+
         txtNombre = (TextView) findViewById(R.id.txtNombre);
         txtDetalle = (TextView) findViewById(R.id.txtDetalle);
         txtCantidad = (TextView) findViewById(R.id.txtCantidad);
@@ -79,15 +82,17 @@ public class Prestamo extends AppCompatActivity implements View.OnClickListener 
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
                 if(position==3){
                     txtObjeto.setEnabled(true);
+                    txtObjeto.setText("");
                     TextView Obj = (TextView) findViewById(R.id.textView10);
                     Obj.setEnabled(true);
                 }else{
+                    txtObjeto.setText("");
                     txtObjeto.setEnabled(false);
                     TextView Obj = (TextView) findViewById(R.id.textView10);
                     Obj.setEnabled(false);
+
                 }
             }
-
             @Override
             public void onNothingSelected(AdapterView<?> parentView) {
                 // your code here
@@ -95,6 +100,20 @@ public class Prestamo extends AppCompatActivity implements View.OnClickListener 
 
         });
     }
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        // TODO Auto-generated method stub
+
+        switch(keyCode){
+            case KeyEvent.KEYCODE_BACK:
+                Intent appInfo1 = new Intent(Prestamo.this, MainActivity.class);
+                startActivity(appInfo1);
+                finish();
+                return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
     @Override
     public void onClick(View v) {
         int id = v.getId();

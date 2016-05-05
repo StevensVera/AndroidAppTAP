@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Prestamo</string>
+    <string name="app_name">Y mis cosas?!</string>
     <string-array name="ListaObjetos">
         <item>Libro</item>
         <item>Dinero</item>
