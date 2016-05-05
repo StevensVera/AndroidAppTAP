@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
         Button boton2 = (Button) findViewById(R.id.btnConsultar);
         boton2.setOnClickListener(this);
         Button boton3 = (Button) findViewById(R.id.btnAcerca);
-        boton2.setOnClickListener(this);
+        boton3.setOnClickListener(this);
 
         TextView text = (TextView) findViewById(R.id.titulo);
         Typeface titulo = Typeface.createFromAsset(getAssets(), "fonts/angrybirds-regular.ttf");
@@ -53,14 +53,6 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
 
 
     }
-    public String getDatePhone(){
-        Calendar calendarNow = Calendar.getInstance();
-        int dia =calendarNow.get(Calendar.DAY_OF_MONTH);
-        int mes= calendarNow.get(Calendar.MONTH);
-        int año = calendarNow.get(Calendar.YEAR);
-        String fecha = dia+"/"+mes+"/"+año;
-        return fecha;
-    }
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.btnPrestar) {
@@ -70,6 +62,11 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
         }
         if (v.getId() == R.id.btnConsultar) {
             Intent Consultar = new Intent(getApplicationContext(), ListaC.class);
+            startActivity(Consultar);
+            finish();
+        }
+        if (v.getId() == R.id.btnAcerca) {
+            Intent Consultar = new Intent(getApplicationContext(), Acercade.class);
             startActivity(Consultar);
             finish();
         }
