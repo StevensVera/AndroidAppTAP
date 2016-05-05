@@ -15,9 +15,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Prestamo" />
+        <activity android:name=".Prestamo"
+            android:windowSoftInputMode="stateHidden"/>
         <activity android:name=".ListaC" />
-        <activity android:name=".EditView"></activity>
+        <activity android:name=".EditView"
+            android:windowSoftInputMode="stateHidden"></activity>
+
     </application>
 
 </manifest>

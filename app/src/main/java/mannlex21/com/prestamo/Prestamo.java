@@ -1,5 +1,7 @@
 package mannlex21.com.prestamo;
 
+import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
@@ -11,6 +13,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -29,10 +32,20 @@ public class Prestamo extends AppCompatActivity implements View.OnClickListener 
     String nombre=null,detalle=null,fecha_fin=null,fecha_a=null,tipo=null,objeto=null;
     private Spinner Lista;
     Integer cantidad=null;
+    int dia, mes, año;
+    int dia1, mes1, año1;
+    int dia2, mes2, año2;
+    static final int DIALOG_ID = 0;
+    Integer ids=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_prestamo);
+        final Calendar cal = Calendar.getInstance();
+        año1=año=cal.get(Calendar.YEAR);
+        mes1=mes=cal.get(Calendar.MONTH);
+        dia1=dia=cal.get(Calendar.DAY_OF_MONTH);
+        Toast.makeText(Prestamo.this,año1+""+mes1+""+dia1,Toast.LENGTH_SHORT).show();
         Objetos = (Spinner) findViewById(R.id.Lista_Objetos);
         ArrayAdapter adapter = ArrayAdapter.createFromResource(this, R.array.ListaObjetos, android.R.layout.simple_spinner_item);
         Objetos.setAdapter(adapter);
@@ -40,13 +53,17 @@ public class Prestamo extends AppCompatActivity implements View.OnClickListener 
         //Le agrega al campo Fecha Actual, la fecha del sistema
         TextView t ;
         t=(TextView)findViewById(R.id.txtFechaActual);
-        t.setText(getDatePhone());
+        t.setText(año1+"/"+mes1+"/"+dia1);
         Button boton1 = (Button) findViewById(R.id.btnLimpiar);
         boton1.setOnClickListener(this);
         Button boton2 = (Button) findViewById(R.id.btnAceptar);
         boton2.setOnClickListener(this);
         Button boton3 = (Button) findViewById(R.id.btnCancelar);
         boton3.setOnClickListener(this);
+        Button boton4 = (Button) findViewById(R.id.btnFecha);
+        boton4.setOnClickListener(this);
+        Button boton5 = (Button) findViewById(R.id.btnFecha2);
+        boton5.setOnClickListener(this);
         txtNombre = (TextView) findViewById(R.id.txtNombre);
         txtDetalle = (TextView) findViewById(R.id.txtDetalle);
         txtCantidad = (TextView) findViewById(R.id.txtCantidad);
@@ -76,14 +93,6 @@ public class Prestamo extends AppCompatActivity implements View.OnClickListener 
 
         });
     }
-    //Obtiene la fecha actual del sistema
-    private String getDatePhone() {
-        Calendar cal = new GregorianCalendar();
-        Date date = cal.getTime();
-        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-        String formatteDate = df.format(date);
-        return formatteDate;
-    }
     @Override
     public void onClick(View v) {
         int id = v.getId();
@@ -99,6 +108,14 @@ public class Prestamo extends AppCompatActivity implements View.OnClickListener 
                 Intent appInfo1 = new Intent(Prestamo.this, MainActivity.class);
                 startActivity(appInfo1);
                 finish();
+                break;
+            case R.id.btnFecha:
+                ids=1;
+                showDialog();
+                break;
+            case R.id.btnFecha2:
+                ids=2;
+                showDialog();
                 break;
         }
     }
@@ -155,8 +172,48 @@ public class Prestamo extends AppCompatActivity implements View.OnClickListener 
         Lista.setSelection(0);
         TextView t ;
         t=(TextView)findViewById(R.id.txtFechaActual);
-        t.setText(getDatePhone());
+        t.setText(año1+"/"+mes1+"/"+dia1);
+    }
+    DatePickerDialog.OnDateSetListener mDateSetFecha = new DatePickerDialog.OnDateSetListener(){
+        @Override
+        public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+
+            if (ids == 1) {
+                dia = dayOfMonth;
+                mes = monthOfYear;
+                año=year;
+                txtFechaActual.setText(año+"/"+mes+"/"+dia);
+                año1=año;
+                mes1=mes;
+                dia1=dia;
+            } else {
+                if(ids==2)
+                    dia2=dia = dayOfMonth;
+                    mes2=mes = monthOfYear;
+                    año2=año=year;
+                    if(año2>=año1 && mes2>=mes1){
+                        if(mes2==mes1){
+                            if(dia2>dia1){
+                                txtFechaFin.setText(año+"/"+mes+"/"+dia);
+                            }else{Toast.makeText(Prestamo.this,"Fecha fin debe ser despues de la fecha de inicio.",Toast.LENGTH_SHORT).show();}
+                        }else{Toast.makeText(Prestamo.this,"Fecha fin debe ser despues de la fecha de inicio.",Toast.LENGTH_SHORT).show();}
+                    }else{Toast.makeText(Prestamo.this,"Fecha fin debe ser despues de la fecha de inicio.",Toast.LENGTH_SHORT).show();}
+            }
+
+
+        }
+    };
+
+    public void showDialog(){
+        showDialog(DIALOG_ID);
+    }
+    protected Dialog onCreateDialog(int id) {
+            if (id == DIALOG_ID) {
+                return new DatePickerDialog(this, mDateSetFecha, año, mes, dia);
+            } else {
+                return null;
+            }
+
+        }
     }
 
-
-}
