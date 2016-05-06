@@ -47,7 +47,6 @@
                     android:inputType="textPersonName"
                     android:ems="10"
                     android:id="@+id/txtNombre"
-                    android:imeOptions="actionNext"
                     android:hint="Inserte Nombre"
                     android:maxLines="1"/>
 
@@ -76,7 +75,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/txtObjeto"
-                    android:imeOptions="actionNext"
                     android:hint="Inserte Objeto"/>
 
                 <TextView
@@ -92,7 +90,6 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/txtDetalle"
                     android:hint="Inserte Detalle"
-                    android:imeOptions="actionNext"
                     android:maxLines="3"/>
 
                 <TextView
@@ -109,7 +106,6 @@
                     android:ems="10"
                     android:id="@+id/txtCantidad"
                     android:hint="Inserte Cantidad"
-                    android:imeOptions="actionNext"
                     android:maxLines="1"/>
 
                 <TextView
@@ -133,7 +129,6 @@
                         android:id="@+id/txtFechaActual"
                         android:layout_gravity="center_horizontal"
                         android:hint="Inserte Fecha de Inicio"
-                        android:imeOptions="actionNext"
                         android:enabled="false"
                         android:maxLines="1"/>
 
@@ -168,7 +163,6 @@
                         android:ems="10"
                         android:id="@+id/txtFechaFin"
                         android:hint="Fecha Entrega. "
-                        android:imeOptions="actionDone"
                         android:enabled="false"
                         android:maxLines="1"/>
 

@@ -85,11 +85,17 @@ public class Prestamo extends AppCompatActivity implements View.OnClickListener 
                     txtObjeto.setText("");
                     TextView Obj = (TextView) findViewById(R.id.textView10);
                     Obj.setEnabled(true);
+                    txtObjeto.setVisibility(View.VISIBLE);
+                    findViewById(R.id.textView10).setVisibility(View.VISIBLE);
                 }else{
                     txtObjeto.setText("");
                     txtObjeto.setEnabled(false);
+
                     TextView Obj = (TextView) findViewById(R.id.textView10);
                     Obj.setEnabled(false);
+
+                    txtObjeto.setVisibility(View.GONE);
+                    findViewById(R.id.textView10).setVisibility(View.GONE);
 
                 }
             }
