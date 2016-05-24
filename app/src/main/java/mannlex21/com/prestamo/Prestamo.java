@@ -47,7 +47,7 @@ public class Prestamo extends AppCompatActivity implements View.OnClickListener 
 
         final Calendar cal = Calendar.getInstance();
         año1=año=cal.get(Calendar.YEAR);
-        mes1=mes=cal.get(Calendar.MONTH);
+        mes1=mes=cal.get(Calendar.MONTH)+1;
         dia1=dia=cal.get(Calendar.DAY_OF_MONTH);
 
         Objetos = (Spinner) findViewById(R.id.Lista_Objetos);
@@ -207,7 +207,7 @@ public class Prestamo extends AppCompatActivity implements View.OnClickListener 
 
             if (ids == 1) {
                 dia = dayOfMonth;
-                mes = monthOfYear;
+                mes = monthOfYear+1;
                 año=year;
                 txtFechaActual.setText(año+"/"+mes+"/"+dia);
                 año1=año;
@@ -216,7 +216,7 @@ public class Prestamo extends AppCompatActivity implements View.OnClickListener 
             } else {
                 if(ids==2)
                     dia2=dia = dayOfMonth;
-                    mes2=mes = monthOfYear;
+                    mes2=mes = monthOfYear+1;
                     año2=año=year;
                     if(año2>=año1 && mes2>=mes1){
                         if(mes2==mes1){
