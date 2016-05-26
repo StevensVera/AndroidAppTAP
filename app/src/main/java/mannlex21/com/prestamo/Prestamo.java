@@ -238,7 +238,7 @@ public class Prestamo extends AppCompatActivity implements View.OnClickListener 
     }
     protected Dialog onCreateDialog(int id) {
             if (id == DIALOG_ID) {
-                return new DatePickerDialog(this, mDateSetFecha, año, mes, dia);
+                return new DatePickerDialog(this, mDateSetFecha, año, (mes-1), dia);
             } else {
                 return null;
             }
