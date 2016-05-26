@@ -4,9 +4,9 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.ContentValues;
 import android.content.Intent;
-import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.KeyEvent;
@@ -16,17 +16,10 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
-import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import org.w3c.dom.Text;
-
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
 
 public class Prestamo extends AppCompatActivity implements View.OnClickListener {
     Spinner Objetos;
@@ -44,6 +37,10 @@ public class Prestamo extends AppCompatActivity implements View.OnClickListener 
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_prestamo);
+
+        TextView text = (TextView) findViewById(R.id.detalle);
+        Typeface titulo = Typeface.createFromAsset(getAssets(), "fonts/angrybirds-regular.ttf");
+        text.setTypeface(titulo);
 
         final Calendar cal = Calendar.getInstance();
         año1=año=cal. get(Calendar.YEAR);
@@ -178,6 +175,7 @@ public class Prestamo extends AppCompatActivity implements View.OnClickListener 
                 valores.put("Fecha_A",fecha_a);
                 valores.put("Fecha_F",fecha_fin);
                 valores.put("CB",cb);
+                valores.put("Estatus","Prestado");
                 db.insert("Prestamo",null,valores);
                 Toast.makeText(this,"Se guardo correctamente",Toast.LENGTH_SHORT).show();
                 Intent appInfo = new Intent(Prestamo.this, MainActivity.class);

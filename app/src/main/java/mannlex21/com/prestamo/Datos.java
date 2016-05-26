@@ -6,11 +6,11 @@ import android.widget.CheckBox;
  * Created by Mannlex21 on 02/05/16.
  */
 public class Datos {
-    protected String nombre, tipo,objeto,descripcion,fecha_i,fecha_f;
+    protected String nombre, tipo,objeto,descripcion,fecha_i,fecha_f,estatus;
     protected Integer cantidad,ID;
     protected Integer check;
 
-    public Datos(Integer ID,String nombre, String tipo, String objeto,String descripcion,String fecha_i, String fecha_f,Integer cantidad, Integer check){
+    public Datos(Integer ID,String nombre, String tipo, String objeto,String descripcion,String fecha_i, String fecha_f,Integer cantidad, Integer check,String estatus){
         this.ID=ID;
         this.nombre = nombre;
         this.tipo = tipo;
@@ -20,6 +20,7 @@ public class Datos {
         this.fecha_f = fecha_f;
         this.cantidad = cantidad;
         this.check = check;
+        this.estatus=estatus;
     }
     public Integer getID(){return ID;}
     public void setID(Integer ID){this.ID=ID;}
@@ -39,4 +40,6 @@ public class Datos {
     public void setFecha_F(String fecha_f){this.fecha_f=fecha_f;}
     public Integer getCheck(){return check;}
     public void setCheck(Integer check){this.check=check;}
+    public String getEstatus(){return estatus;}
+    public void setEstatus(String estatus){this.estatus=estatus;}
 }

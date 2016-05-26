@@ -113,6 +113,20 @@
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:text="Fecha Final"
             android:id="@+id/txtFechaF" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Estado:"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Estado"
+            android:textColor="#bb1300"
+            android:id="@+id/status" />
 
         <TextView
             android:layout_width="wrap_content"

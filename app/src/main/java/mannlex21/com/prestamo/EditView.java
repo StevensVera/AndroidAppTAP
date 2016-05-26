@@ -150,12 +150,16 @@ public class EditView extends AppCompatActivity implements View.OnClickListener 
             if (Chk == 0) {
                 sql = "UPDATE Prestamo SET CB=" + 1 + "  Where Id_Prestamo=" + Id;
                 database.execSQL(sql);
+                sql = "UPDATE Prestamo SET Estatus='Entregado'  Where Id_Prestamo=" + Id;
+                database.execSQL(sql);
                 Intent Consultar = new Intent(getApplicationContext(), ListaC.class);
                 startActivity(Consultar);
                 finish();
 
             } else {
                 sql = "UPDATE Prestamo SET CB=" + 0 + "  Where Id_Prestamo=" + Id;
+                database.execSQL(sql);
+                sql = "UPDATE Prestamo SET Estatus='Prestado'  Where Id_Prestamo=" + Id;
                 database.execSQL(sql);
                 Intent Consultar = new Intent(getApplicationContext(), ListaC.class);
                 startActivity(Consultar);

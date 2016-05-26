@@ -18,13 +18,13 @@ public class AppSQLiteOpenHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("CREATE TABLE Prestamo (Id_Prestamo INTEGER NOT NULL PRIMARY KEY, NombreP TEXT, Tipo TEXT, Objeto TEXT, Detalle TEXT, Cantidad INTEGER, Fecha_A TEXT, Fecha_F TEXT, CB INTEGER)");
+        db.execSQL("CREATE TABLE Prestamo (Id_Prestamo INTEGER NOT NULL PRIMARY KEY, NombreP TEXT, Tipo TEXT, Objeto TEXT, Detalle TEXT, Cantidad INTEGER, Fecha_A TEXT, Fecha_F TEXT, CB INTEGER,Estatus TEXT)");
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXIST Prestamo");
-        db.execSQL("CREATE TABLE Prestamo (Id_Prestamo INTEGER NOT NULL PRIMARY KEY, NombreP TEXT, Tipo TEXT, Objeto TEXT, Detalle TEXT, Cantidad INTEGER, Fecha_A TEXT, Fecha_F TEXT, CB INTEGER)");
+        db.execSQL("CREATE TABLE Prestamo (Id_Prestamo INTEGER NOT NULL PRIMARY KEY, NombreP TEXT, Tipo TEXT, Objeto TEXT, Detalle TEXT, Cantidad INTEGER, Fecha_A TEXT, Fecha_F TEXT, CB INTEGER,Estatus TEXT)");
     }
     public ArrayList llenar(){
         ArrayList<String> lista = new ArrayList<>();

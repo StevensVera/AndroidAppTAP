@@ -9,7 +9,12 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="mannlex21.com.prestamo.Prestamo"
     android:background="@drawable/img8">
-
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Prestamo"
+        android:id="@+id/detalle"
+        android:textSize="35dp" />
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -17,7 +22,8 @@
         android:weightSum="1"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
-        android:layout_marginBottom="79dp">
+        android:layout_marginBottom="79dp"
+        android:layout_marginTop="39dp">
 
         <ScrollView
             android:layout_width="match_parent"
@@ -38,7 +44,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:text="Nombre a quien se prestara:"
+                    android:text="¿A quien se prestara?"
                     android:id="@+id/textView8" />
 
                 <EditText
