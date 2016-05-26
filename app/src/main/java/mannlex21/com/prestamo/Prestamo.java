@@ -46,7 +46,7 @@ public class Prestamo extends AppCompatActivity implements View.OnClickListener 
         setContentView(R.layout.activity_prestamo);
 
         final Calendar cal = Calendar.getInstance();
-        año1=año=cal.get(Calendar.YEAR);
+        año1=año=cal. get(Calendar.YEAR);
         mes1=mes=cal.get(Calendar.MONTH)+1;
         dia1=dia=cal.get(Calendar.DAY_OF_MONTH);
 
@@ -223,7 +223,11 @@ public class Prestamo extends AppCompatActivity implements View.OnClickListener 
                             if(dia2>dia1){
                                 txtFechaFin.setText(año+"/"+mes+"/"+dia);
                             }else{Toast.makeText(Prestamo.this,"Fecha fin debe ser despues de la fecha de inicio.",Toast.LENGTH_SHORT).show();}
-                        }else{Toast.makeText(Prestamo.this,"Fecha fin debe ser despues de la fecha de inicio.",Toast.LENGTH_SHORT).show();}
+                        }else{
+                            if(mes2>mes1){
+                                txtFechaFin.setText(año+"/"+mes+"/"+dia);
+                            }
+                        }
                     }else{Toast.makeText(Prestamo.this,"Fecha fin debe ser despues de la fecha de inicio.",Toast.LENGTH_SHORT).show();}
             }
 
